@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { getRecommendedTracks } from '../services/trackRecommendations';
-import { processInputToFeatures } from '../services/textProcessing';
 import PlaylistDisplay from './PlaylistDisplay';
 
 const PlaylistGenerator = ({ onMoodSelect }) => {
@@ -12,9 +11,7 @@ const PlaylistGenerator = ({ onMoodSelect }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const audioFeatures = processInputToFeatures(inputText);
-      console.log('Processed features:', audioFeatures);
-      const recommendedTracks = await getRecommendedTracks(audioFeatures);
+      const recommendedTracks = await getRecommendedTracks(inputText);
       setTracks(recommendedTracks);
     } catch (error) {
       console.error('Error:', error);

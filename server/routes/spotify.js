@@ -2,12 +2,26 @@ const express = require('express');
 const SpotifyWebApi = require('spotify-web-api-node');
 const config = require('../config');
 const router = express.Router();
+const axios = require('axios');
+
 
 const spotifyApi = new SpotifyWebApi({
   clientId: config.spotifyClientId,
   clientSecret: config.spotifyClientSecret,
   redirectUri: config.redirectUri
 });
+
+async function getNLPFeatures(text) {
+  try {
+    const response = await axios.post('http://localhost:5002/analyze', {
+      text: text
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error getting NLP features:', error);
+    throw error;
+  }
+}
 
 // Global variable to store recommended tracks
 let globalTracks = [];
@@ -20,29 +34,41 @@ router.use((req, res, next) => {
   next();
 });
 
-// Route to get recommendations
+// Route to get recommendations, using NLP
 router.post('/recommendations', async (req, res) => {
   try {
-    const { audioFeatures } = req.body;
-    console.log('Received audio features:', audioFeatures); // Debug log
+    const { text } = req.body;
+    console.log('Received text:', text);
+
+    // Get NLP analysis
+    const nlpResponse = await getNLPFeatures(text);
+    const audioFeatures = nlpResponse.features;
+    const genres = nlpResponse.genres;
+    
+    console.log('NLP features:', audioFeatures);
+    console.log('Selected genres:', genres);
 
     // Get recommendations from Spotify API
     const recommendations = await spotifyApi.getRecommendations({
       limit: 20,
-      seed_genres: ['pop'], // Example seed genre
+      seed_genres: genres, // Updated: use genres from NLP
       target_valence: audioFeatures.valence,
       target_energy: audioFeatures.energy,
       target_danceability: audioFeatures.danceability,
+      target_acousticness: audioFeatures.acousticness,
+      target_instrumentalness: audioFeatures.instrumentalness,
+      target_speechiness: audioFeatures.speechiness,
+      target_liveness: audioFeatures.liveness,
+      target_tempo: audioFeatures.tempo,
       min_popularity: 20
     });
 
     // Update globalTracks with new recommendations
     globalTracks = recommendations.body.tracks.map(track => track.uri);
-    console.log('Updated globalTracks:', globalTracks);
-
+    
     res.json(recommendations.body.tracks);
   } catch (error) {
-    console.error('Error fetching recommendations:', error.body || error); // Enhanced error logging
+    console.error('Error fetching recommendations:', error);
     res.status(500).json({ error: 'Failed to get recommendations' });
   }
 });

@@ -1,3 +1,14 @@
-.env
+# Environment files
+/.env
+*/.env
+
+# Dependency directories
 node_modules/
-config.js
+*/venv
+
+# Configuration files
+/config.js
+
+# Debugging and temporary files
+/debugging/
+.cache
