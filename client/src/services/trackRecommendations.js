@@ -1,17 +1,14 @@
-import { getMoodVector } from './audioFeatures';
-
 const SPOTIFY_BASE_URL = 'http://localhost:5001/spotify';
 
-export const getRecommendedTracks = async (mood) => {
+export const getRecommendedTracks = async (features) => {
   try {
-    const moodVector = getMoodVector(mood);
-    
+    console.log('Sending features to server:', features);
     const response = await fetch(`${SPOTIFY_BASE_URL}/recommendations`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ audioFeatures: moodVector }),
+      body: JSON.stringify({ audioFeatures: features }),
     });
 
     if (!response.ok) {

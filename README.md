@@ -12,7 +12,7 @@ The Spotify Playlist Generator is a tool that allows users to create custom play
 ## Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/Spotify-Playlist-Generator.git
+    git clone https://github.com/yourusername/spotify-playlist-generator.git
     ```
 2. Navigate to the project directory:
     ```bash
@@ -34,7 +34,7 @@ The Spotify Playlist Generator is a tool that allows users to create custom play
     ```bash
     npm start
     ```
-4. Open your browser and navigate to `http://localhost:3000` to use the Spotify Playlist Generator.
+4. Open your browser and navigate to `http://localhost:5173` to use the Spotify Playlist Generator.
 
 ## Contributing
 Contributions are welcome! Please fork the repository and create a pull request with your changes.
