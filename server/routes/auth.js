@@ -1,17 +1,12 @@
 const express = require('express');
 const SpotifyWebApi = require('spotify-web-api-node');
 const config = require('../config');
+const { spotifyApi } = require('./spotify');
 const router = express.Router();
 
 console.log('SpotifyWebApi Config:', {
   clientId: !!config.spotifyClientId, // logs true/false for security
   clientSecret: !!config.spotifyClientSecret,
-  redirectUri: config.redirectUri
-});
-
-const spotifyApi = new SpotifyWebApi({
-  clientId: config.spotifyClientId,
-  clientSecret: config.spotifyClientSecret,
   redirectUri: config.redirectUri
 });
 

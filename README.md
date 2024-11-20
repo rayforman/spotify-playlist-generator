@@ -46,3 +46,9 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [Spotify Web API](https://developer.spotify.com/documentation/web-api/)
 - [React](https://reactjs.org/)
 - [Node.js](https://nodejs.org/)
+
+## Code Breakdown
+
+1. /client/ folder handles all frontend code, written primarily in React/Vite
+2. /server/ folder handles all backend code, written primarily in Node.js/Express
+3. 
