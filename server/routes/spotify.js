@@ -50,7 +50,7 @@ router.post('/recommendations', async (req, res) => {
 
     // Get recommendations from Spotify API
     const recommendations = await spotifyApi.getRecommendations({
-      limit: 20,
+      limit: 50,
       seed_genres: genres, // Updated: use genres from NLP
       target_valence: audioFeatures.valence,
       target_energy: audioFeatures.energy,
