@@ -1,4 +1,4 @@
-# Spotify Playlist Generator
+# Spotify AI Playlist Generator
 
 ## Overview
 A web application that generates personalized Spotify playlists using GPT-3.5 to analyze text descriptions and map them to Spotify's audio features. The app combines OpenAI's language understanding with Spotify's recommendation system to create playlists that match users' descriptions.
