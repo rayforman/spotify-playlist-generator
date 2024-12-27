@@ -11,20 +11,13 @@ A web application that generates personalized Spotify playlists using GPT-3.5 to
 - Playlist saving to Spotify account
 - Extreme-value audio feature mapping for distinctive playlists
 
+## IMPORTANT UPDATE 
+Due to Spotify's recent changes to their Web API, this application is temporarily disfunctional. Critical API functions such as getRecommendations() have been removed from public access. I have applied for extended API access to recover functionality and am awaiting approval. Thank you for your patience. 
+[More info](https://developer.spotify.com/blog/2024-11-27-changes-to-the-web-api?utm_source=chatgpt.com)
+
 ## Screenshots
 
-<table>
-  <tr>
-    <td style="width: 700px; text-align: center;">
-      <img src="./images/gen_playlist_ui.png" alt="User Interface" width="700"><br>
-      <em>User Interface</em>
-    </td>
-    <td style="text-align: center;">
-      <img src="./images/gen_playlist.jpg" alt="Generated Playlist" style="max-width: 100%;"><br>
-      <em>Spotify Generated Playlist</em>
-    </td>
-  </tr>
-</table>
+![Spotify Image](images/spotify_project_full.png "Spotify Image")
 
 ## Upcoming Features
 - Artist recognition in input text for better seed selection 
